@@ -1,8 +1,8 @@
 const title = 'Alphabet radio et position des lettres dans alphabet';
 console.log('app : ', title);
 
-let radioAlphabets = ['charlie','echo','delta', 'delta2', 'alpha','foxtrot'];
-let letters = [ 
+const radioAlphabets = ['charlie','echo','delta', 'delta2', 'alpha','foxtrot'];
+const letters = [ 
     {'letter' :'b', 'position': '1'}, 
     null,
     {'letter' :'a'},

@@ -29,8 +29,11 @@
       "node": true
     },
     "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module"
+      "ecmaVersion": 7,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
     },
     "rules": {
       "semi": 2
@@ -39,12 +42,14 @@
   "babel": {
     "presets": [
       "es2015"
-    ]
+    ],
+    "plugins": ["transform-object-rest-spread"]
   },
   "homepage": "https://github.com/wbkd/webpack-starter#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",

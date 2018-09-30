@@ -16,42 +16,27 @@ let letters = [
 
 console.log('original | ', letters);
 
-function doSort (letters) {
-    return letters
-        .filter(x => x)
-        .map((letterObj) => {
-            letterObj.position = letterObj.position ? parseInt(letterObj.position) + 1 : 1;
-            letterObj.radioAlphabets = [];
-            letterObj.count = 0;
+const lettersResult = letters
+.filter(letter => letter)
+.sort((item1, item2) => item1.letter > item2.letter)
+.map(letter => {
+  const alphabet = radioAlphabets.filter(radio => letter.letter === [...radio][0]);
+  return {
+    ...letter,
+    position: letter.position ? Number(letter.position) + 1 : 1,
+    radioAlphabets: alphabet,
+    count: alphabet.length
+  };
+});
 
-            return letterObj;
-        })
-        .sort((item1, item2)=> item1.position - item2.position);
-}
-
-function doAddRadioAlphabet (letters, radioAlphabets) {
-    for(let letterId in letters) {
-        for(let radioAlphabetId in radioAlphabets) {
-            if(radioAlphabets[radioAlphabetId][0].includes(letters[letterId].letter)) {
-                letters[letterId].count++;
-                letters[letterId].radioAlphabets.push(radioAlphabets[radioAlphabetId]);
-            }
-        }
-    }
-    
-    return letters;
-}
-
-let lettersSorted = doSort(JSON.parse(JSON.stringify( letters )));
-console.log('sort & map | ', lettersSorted);
-
-let lettersContentAdded = doAddRadioAlphabet(JSON.parse(JSON.stringify( lettersSorted )), radioAlphabets);
-console.log('add content | ', lettersContentAdded);
+console.log('resultat | ', lettersResult);
 
 /* Resultat attendu :
-0: {letter: "a", position: 1, radioAlphabets: Array(1), count: 1}
-1: {letter: "b", position: 2, radioAlphabets: Array(0), count: 0}
-2: {letter: "c", position: 3, radioAlphabets: Array(1), count: 1}
-3: {letter: "d", position: 4, radioAlphabets: Array(2), count: 2}
-4: {letter: "e", position: 5, radioAlphabets: Array(1), count: 1}
+0: {letter: "a", position: 1, radioAlphabets: ["alpha"], count: 1}
+1: {letter: "b", position: 2, radioAlphabets: [], count: 0}
+2: {letter: "c", position: 3, radioAlphabets: ["charlie"], count: 1}
+3: {letter: "d", position: 4, radioAlphabets: ["delta", "delta2"], count: 2}
+4: {letter: "e", position: 5, radioAlphabets: ["echo"], count: 1}
+5: {letter: "f", position: 6, radioAlphabets: ["foxtrot"], count: 1}
 */
+

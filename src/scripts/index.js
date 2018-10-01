@@ -16,7 +16,18 @@ const letters = [
 
 console.log('original | ', letters);
 
-const lettersResult = null;
+const lettersResult = letters
+.filter(letter => letter)
+.sort((item1, item2) => item1.letter > item2.letter)
+.map(letter => {
+  const alphabet = radioAlphabets.filter(radio => letter.letter === radio[0]);
+  return {
+    ...letter,
+    position: letter.position ? Number(letter.position) + 1 : 1,
+    radioAlphabets: alphabet,
+    count: alphabet.length,
+  };
+});
 
 console.log('resultat | ', lettersResult);
 
